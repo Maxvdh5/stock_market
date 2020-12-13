@@ -34,9 +34,7 @@ def main():
     """Main function of the App"""
     st.sidebar.title("Navigation")
     pgs = list(PAGES.keys())
-    print(pgs)
     pgs = check_done(pgs)
-    print(pgs)
     selection = st.sidebar.radio("Go to", [is_done(p) for p in pgs])
 
     page = PAGES[selection.strip(' ✓')]

@@ -44,8 +44,6 @@ def write():
         hd = st.text_input("", value='Netherlands')
 
     try:
-        hol = holidays.CountryHoliday(hd)
-        session_state["hol"] = hol
         session_state["hol_val"] = hd
     except:
         set_holiday = False

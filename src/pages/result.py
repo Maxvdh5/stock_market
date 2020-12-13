@@ -1,20 +1,22 @@
 """Home page shown when the user enters the application"""
+import holidays
 import streamlit as st
 from src.utils import cache
 from streamlit import caching
 from fbprophet import Prophet
 import pandas as pd
 
+session_state = cache()
 
 @st.cache
 def get_model(data):
     m = Prophet()
+    m.add_country_holidays(country_name=session_state["hol_val"])
     m.fit(data)
     return m
 
 
 def write():
-    session_state = cache()
     hist = session_state["mrkt"].history(start=session_state["begin"], end=session_state["end"],)
     hist = hist.reset_index()
 
